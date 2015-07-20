@@ -1,0 +1,33 @@
+package HttpSender.http;
+
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class httpWithThread implements Runnable{
+
+	private String content = "";
+	
+	
+	
+	URL url;
+    HttpURLConnection connection = null;
+	
+	
+	
+	
+	public httpWithThread(String content) {
+		this.content=content;
+	}
+	
+	public void run() {
+		try {
+			 //Create connection
+			CloseableHttpClient httpClient = HttpClients.createDefault();
+	        HttpPost post = new HttpPost("http://localhost:8080/fastpromise/service/getPromise");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

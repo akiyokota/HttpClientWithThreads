@@ -1,0 +1,42 @@
+package HttpSender.http;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.apache.http.client.methods.HttpPost;
+
+public class httpWithThread implements Runnable{
+
+	private String content = "";
+	
+	
+	
+	URL url;
+    HttpURLConnection connection = null;
+	
+	
+	
+	
+	public httpWithThread(String content) {
+		this.content=content;
+	}
+	
+	public void run() {
+		try {
+			 HttpClient httpClient = new DefaultHttpClient();
+             HttpPost postRequest = new HttpPost(myUrlgoeshere);
+             StringEntity input = new StringEntity(generatedJSONString);
+             input.setContentType("application/json;charset=UTF-8");
+             postRequest.setEntity(input);
+             input.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,"application/json;charset=UTF-8"));
+             postRequest.setHeader("Accept", "application/json");
+             postRequest.setEntity(input); 
+
+             HttpResponse response = httpClient.execute(postRequest);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,32 @@
+package HttpSender.http;
+
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class httpWithThread implements Runnable{
+
+	private String content = "";
+	
+	
+	
+	URL url;
+    HttpURLConnection connection = null;
+	
+	
+	
+	
+	public httpWithThread(String content) {
+		this.content=content;
+	}
+	
+	public void run() {
+		try {
+			 //Create connection
+			CloseableHttpClient httpClient = HttpClients.createDefault();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

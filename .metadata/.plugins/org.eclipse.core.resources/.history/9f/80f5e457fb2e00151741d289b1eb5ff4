@@ -1,0 +1,15 @@
+package HttpSender.http;
+
+public class httpWithThread implements Runnable{
+
+	private String content = "";
+	
+	public httpWithThread() {
+		
+	}
+	
+	public void run() {
+		
+	}
+
+}

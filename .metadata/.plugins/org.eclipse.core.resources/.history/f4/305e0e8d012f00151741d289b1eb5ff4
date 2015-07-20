@@ -1,0 +1,28 @@
+package HttpSender.http;
+
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class httpWithThread implements Runnable{
+
+	private String content = "";
+    HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead 
+
+	public httpWithThread(String content) {
+		this.content=content;
+	}
+	
+	public void run() {
+		try {
+			HttpPost request = new HttpPost("http://yoururl");
+	        StringEntity params =new StringEntity("details={\"name\":\"myname\",\"age\":\"20\"} ");
+	        request.addHeader("content-type", "application/x-www-form-urlencoded");
+	        request.setEntity(params);
+	        HttpResponse response = httpClient.execute(request);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

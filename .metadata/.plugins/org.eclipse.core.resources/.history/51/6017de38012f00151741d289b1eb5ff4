@@ -1,0 +1,32 @@
+package HttpSender.http;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class httpWithThread implements Runnable{
+
+	private String content = "";
+	public httpWithThread(String content) {
+		this.content=content;
+	}
+	
+	public void run() {
+		try {
+			URL url = new URL("http://localhost:8080/fastpromise/service/getPromise");
+		    URLConnection conn = url.openConnection();
+		    conn.setDoOutput(true);
+		    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+		    wr.write(content);
+		    wr.flush();
+
+		    wr.close();
+		    rd.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

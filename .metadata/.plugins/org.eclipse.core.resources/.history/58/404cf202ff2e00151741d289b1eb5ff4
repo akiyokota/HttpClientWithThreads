@@ -1,0 +1,42 @@
+package HttpSender.http;
+
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class httpWithThread implements Runnable{
+
+	private String content = "";
+	HttpURLConnection connection = null;  
+	public httpWithThread(String content) {
+		this.content = content;
+		
+		try {
+			URL url = new URL("http://localhost:8080/fastpromise/service/getPromise");
+		    connection = (HttpURLConnection)url.openConnection();
+		    connection.setRequestMethod("POST");
+		    connection.setRequestProperty("Content-Type", 
+		        "application/json");
+		    connection.setRequestProperty("Content-Length", 
+		            Integer.toString(content.getBytes().length));
+		    connection.setRequestProperty("Content-Language", "en-US"); 
+		    connection.setUseCaches(false);
+		    connection.setDoOutput(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void run() {
+		try 
+		{
+			DataOutputStream wr = new DataOutputStream (
+			        connection.getOutputStream());
+			    wr.writeBytes(content);
+			    wr.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,38 @@
+package HttpSender.http;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+public class httpWithThread implements Runnable{
+
+	private String content = "";
+	
+	
+	
+	URL url;
+    HttpURLConnection connection = null;
+	
+	
+	
+	
+	public httpWithThread(String content) {
+		this.content=content;
+	}
+	
+	public void run() {
+		try {
+		    HttpPost request = new HttpPost("http://localhost:8080/fastpromise/service/getPromise");
+		    StringEntity params =new StringEntity(content);
+		    request.addHeader("content-type", "application/json");
+		    request.addHeader("Accept","application/json");
+		    request.setEntity(params);
+		    HttpResponse response = httpClient.execute(request);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
